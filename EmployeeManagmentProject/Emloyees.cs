@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace EmployeeManagmentProject
 {
+    //employee model class
     public class Employee
     {
         public int Id { get; set; }

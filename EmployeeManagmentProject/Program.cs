@@ -8,6 +8,7 @@ namespace EmployeeManagmentProject
 {
     internal class Program
     {
+        //this is starting point of my application
         static void Main(string[] args)
         {
 
