@@ -12,7 +12,7 @@ namespace EmployeeManagmentProject
         static void Main(string[] args)
         {
 
-            Service service = new Service();
+            IService service = new ArrayService();
 
             string text = "!!!!Employee Management System!!!!";
 
