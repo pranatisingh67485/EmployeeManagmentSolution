@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,33 +42,35 @@ namespace EmployeeManagmentProject
                 {
                     case 1:
                         Console.WriteLine("Add Employee");
-                        service.AddEmployee();
+                        service.add();
                         break;
 
                     case 2:
                         Console.WriteLine("View Employee");
-                        service.ViewEmployees();
+                        service.view();
                         break;
 
                     case 3:
                         Console.WriteLine("Update Employee");
-                        service.UpdateEmployee();
+                        service.update();
                         break;
 
                     case 4:
                         Console.WriteLine("Get Employee");
-                        service.GetEmployee();
+                        service.search();
                         break;
 
                     case 5:
                         Console.WriteLine("Delete Employee");
-                        service.DeleteEmployee();
+                        service.delete();
                         break;
 
                     case 6:
-                        Environment.Exit(0);
-                        break;
-
+                        {
+                            flag = false;
+                            break;
+                        }
+                       
                     default:
                         Console.WriteLine("Invalid Choice! Please choose the number according to screen choices");
                         break;
