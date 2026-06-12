@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagmentProject
 {
-    public class Service
+    public class ArrayService : IService
+
     {
         private Employee[] employees = new Employee[100];
         private int employeeCount = 0;
@@ -203,4 +204,5 @@ namespace EmployeeManagmentProject
             Console.WriteLine("Employee Not Found!");
         }
     }
+    
 }
