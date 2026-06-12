@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagmentProject
 {
-    public class Service
+    public class ArrayService : IService
+
     {
         private Employee[] employees = new Employee[100];
         private int employeeCount = 0;
@@ -34,7 +35,7 @@ namespace EmployeeManagmentProject
                     emp.Name = name;
                     break;
                 }
-                Console.WriteLine("Name cannot be empty!! Enter Name");
+                Console.WriteLine("Name cannot be empty!! Enter user  Name:");
             }
 
             while (true)
@@ -42,10 +43,11 @@ namespace EmployeeManagmentProject
                 Console.Write("Enter Phone No: ");
                 string phone = Console.ReadLine();
                 if (!string.IsNullOrEmpty(phone) &&
-                    phone.Length == 10 &&
+                    phone.Length == 10 && 
                     long.TryParse(phone, out _))
                 {
                     emp.PhoneNo = phone;
+                    //break
                     break;
                 }
                 Console.WriteLine("Invalid Phone Number! PhoneNp. must be 10 digit number");
@@ -203,4 +205,5 @@ namespace EmployeeManagmentProject
             Console.WriteLine("Employee Not Found!");
         }
     }
+    
 }
