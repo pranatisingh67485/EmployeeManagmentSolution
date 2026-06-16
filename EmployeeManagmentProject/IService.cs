@@ -8,11 +8,11 @@ namespace EmployeeManagmentProject
 {
     internal interface IService
     {
-        void add();
-        void view();
-        void update();
-        void search();
-        void delete();
+        public void add();
+        public void view();
+        public void update();
+        public void search();
+        public void delete();
 
 
     }
