@@ -4,6 +4,9 @@ using System.Collections.Generic;
 namespace EmployeeManagmentProject
 {
     public class Employee
+=======
+    public class Employees
+>>>>>>> Stashed changes
     {
         public int Id { get; set; }
         public string Name { get; set; }
