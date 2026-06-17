@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagmentProject
 {
-    internal interface IService
+    public interface IService
     {
-        public void add();
-        public void view();
-        public void update();
-        public void search();
-        public void delete();
+         void add();
+         void view();
+         void update();
+         void search();
+         void delete();
 
 
     }
