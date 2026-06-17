@@ -9,7 +9,7 @@ namespace EmployeeManagmentProject
     public class ArrayServices : IService
 
     {
-        private Employee[] employees = new Employee[100];
+        private Employees[] employees = new Employees[100];
         private int employeeCount = 0;
         private int nextID = 1;
          
@@ -21,7 +21,7 @@ namespace EmployeeManagmentProject
                 return;
             }
 
-            Employee emp = new Employee();
+            Employees emp = new Employees();
 
             emp.Id = nextID;
 
@@ -35,7 +35,35 @@ namespace EmployeeManagmentProject
                     break;
                 }
                 Console.WriteLine("Name cannot be empty!! Enter user  Name:");
+
             }
+
+
+            while (true)
+            {
+                Console.Write("Enter DOB (yyyy-mm-dd): ");
+                string dob = Console.ReadLine();
+                if (!string.IsNullOrEmpty(dob) && DateTime.TryParse(dob, out DateTime parsedDob))
+                {
+                    emp.DOB = parsedDob;
+                    break;
+                }
+                Console.WriteLine("Invalid DOB! Please enter a valid date in yyyy-MM-dd format.");
+            }
+
+            while (true)
+            {
+                Console.Write("Enter DOJ (yyyy-mm-dd): ");
+                string doj = Console.ReadLine();
+                if (!string.IsNullOrEmpty(doj) && DateTime.TryParse(doj, out DateTime parsedDob))
+                {
+                    emp.DOJ = parsedDob;
+                    break;
+                }
+                Console.WriteLine("Invalid Dete Of Joining! Please enter a valid date in yyyy-mm-dd format.");
+            }
+
+
 
             while (true)
             {
@@ -69,17 +97,16 @@ namespace EmployeeManagmentProject
 
             }
 
-
-            Console.Write("Enter Address: ");
-            string address = Console.ReadLine();
-            while (true)
+           while (true)
             {
+                Console.Write("Enter Address: ");
+                string address = Console.ReadLine();
                 if (!string.IsNullOrEmpty(address))
                 {
                     emp.Address = address;
                     break;
                 }
-                Console.WriteLine("Address cannot be empty!! Enter Address");
+                Console.WriteLine("Address cannot be empty!! Enter user Address:");
             }
 
             employees[employeeCount] = emp;
@@ -100,7 +127,7 @@ namespace EmployeeManagmentProject
             Console.WriteLine("ID\tName\t\tPhone\t\tEmail\t\t\tAddress");
             Console.WriteLine("---------------------------------------------------------------------");
 
-            foreach (Employee employee in employees)
+            foreach (Employees employee in employees)
             {
                 if (employee != null)
                 {

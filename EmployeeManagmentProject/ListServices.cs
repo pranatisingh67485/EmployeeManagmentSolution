@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmployeeManagmentProject
 {
@@ -10,34 +7,106 @@ namespace EmployeeManagmentProject
     {
         static List<Employees> employees = new List<Employees>();
 
-
+        private int nextID = 1;
 
         public void add()
         {
+            if (employees.Count >= 100)
+            {
+                Console.WriteLine("Employee storage is full!");
+                return;
+            }
+
             Employees emp = new Employees();
 
+            emp.Id = nextID++;
 
-            Console.Write("Enter Employee Id: ");
-            emp.Id = Convert.ToInt32(Console.ReadLine());
+            while (true)
+            {
+                Console.Write("Enter Name: ");
+                string name = Console.ReadLine();
 
-            Console.Write("Enter Employee Name: ");
-            emp.Name = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    emp.Name = name;
+                    break;
+                }
 
-            Console.Write(" enter emoloyee date of birth dd/mm/yyy: ");
+                Console.WriteLine("Name cannot be empty!");
+            }
 
-            emp.DOB = DateTime.Parse(Console.ReadLine());
+            while (true)
+            {
+                Console.Write("Enter DOB (yyyy-MM-dd): ");
+                string dob = Console.ReadLine();
 
-            Console.Write(" enter employee date of joining dd/mm/yy: ");
-            emp.DOJ = DateTime.Parse(Console.ReadLine());
+                if (DateTime.TryParse(dob, out DateTime parsedDob))
+                {
+                    emp.DOB = parsedDob;
+                    break;
+                }
 
-            //Console.Write("Enter Employee Phone: ");
-            //emp.Phone = long.Parse(Console.ReadLine());
+                Console.WriteLine("Invalid DOB!");
+            }
 
-            Console.Write("Enter Employee Email: ");
-            emp.Email = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Enter DOJ (yyyy-MM-dd): ");
+                string doj = Console.ReadLine();
 
-            Console.Write("Enter Employee Address: ");
-            emp.Address = Console.ReadLine();
+                if (DateTime.TryParse(doj, out DateTime parsedDoj))
+                {
+                    emp.DOJ = parsedDoj;
+                    break;
+                }
+
+                Console.WriteLine("Invalid DOJ!");
+            }
+
+            while (true)
+            {
+                Console.Write("Enter Phone No: ");
+                string phone = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(phone) &&
+                    phone.Length == 10 &&
+                    long.TryParse(phone, out _))
+                {
+                    emp.PhoneNo = phone;
+                    break;
+                }
+
+                Console.WriteLine("Phone number must contain exactly 10 digits.");
+            }
+
+            while (true)
+            {
+                Console.Write("Enter Email: ");
+                string email = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(email) &&
+                    email.EndsWith("@gmail.com"))
+                {
+                    emp.Email = email;
+                    break;
+                }
+
+                Console.WriteLine("Invalid Email!");
+            }
+
+            while (true)
+            {
+                Console.Write("Enter Address: ");
+                string address = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(address))
+                {
+                    emp.Address = address;
+                    break;
+                }
+
+                Console.WriteLine("Address cannot be empty!");
+            }
 
             employees.Add(emp);
 
@@ -47,27 +116,24 @@ namespace EmployeeManagmentProject
         public void view()
         {
             if (employees.Count == 0)
-
             {
                 Console.WriteLine("No Employees Found.");
                 return;
             }
 
-            foreach (var emp in employees)
-
+            foreach (Employees emp in employees)
             {
-                Console.WriteLine("\n--------------------");
+                Console.WriteLine("--------------------------------");
                 Console.WriteLine($"ID      : {emp.Id}");
                 Console.WriteLine($"Name    : {emp.Name}");
-                Console.WriteLine($"DOB     : {emp.DOB}");
-                Console.WriteLine($"DOJ     : {emp.DOJ}");
-                //Console.WriteLine($"Phone   : {emp.Phone}");
+                Console.WriteLine($"DOB     : {emp.DOB:dd/MM/yyyy}");
+                Console.WriteLine($"DOJ     : {emp.DOJ:dd/MM/yyyy}");
+                Console.WriteLine($"Phone   : {emp.PhoneNo}");
                 Console.WriteLine($"Email   : {emp.Email}");
                 Console.WriteLine($"Address : {emp.Address}");
-
+                Console.WriteLine("--------------------------------");
             }
         }
-
         public void search()
         {
             Console.Write("Enter Employee ID to Search: ");
@@ -77,7 +143,15 @@ namespace EmployeeManagmentProject
 
             if (emp != null)
             {
-                Console.WriteLine($"Employee Found: {emp.Name}");
+                Console.WriteLine("\nEmployee Found");
+                Console.WriteLine("-----------------------");
+                Console.WriteLine($"ID      : {emp.Id}");
+                Console.WriteLine($"Name    : {emp.Name}");
+                Console.WriteLine($"DOB     : {emp.DOB:dd/MM/yyyy}");
+                Console.WriteLine($"DOJ     : {emp.DOJ:dd/MM/yyyy}");
+                Console.WriteLine($"Phone   : {emp.PhoneNo}");
+                Console.WriteLine($"Email   : {emp.Email}");
+                Console.WriteLine($"Address : {emp.Address}");
             }
             else
             {
@@ -97,11 +171,14 @@ namespace EmployeeManagmentProject
                 Console.Write("Enter New Name: ");
                 emp.Name = Console.ReadLine();
 
-                //Console.Write("Enter New Phone: ");
-                //emp.Phone = long.Parse(Console.ReadLine());
+                Console.Write("Enter New Phone No: ");
+                emp.PhoneNo = Console.ReadLine();
 
                 Console.Write("Enter New Email: ");
                 emp.Email = Console.ReadLine();
+
+                Console.Write("Enter New Address: ");
+                emp.Address = Console.ReadLine();
 
                 Console.WriteLine("Employee Updated Successfully!");
             }
@@ -120,8 +197,8 @@ namespace EmployeeManagmentProject
 
             if (emp != null)
             {
-
                 employees.Remove(emp);
+
                 Console.WriteLine("Employee Deleted Successfully!");
             }
             else
@@ -129,6 +206,5 @@ namespace EmployeeManagmentProject
                 Console.WriteLine("Employee Not Found.");
             }
         }
-
     }
 }
