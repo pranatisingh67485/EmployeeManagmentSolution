@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace EmployeeManagmentProject
 {
     internal class Program
@@ -13,7 +14,7 @@ namespace EmployeeManagmentProject
         static void Main(string[] args)
         {
 
-            IService service = new ListServices();
+            IService service = new DBServices();
 
             string text = "!!!!Employee Management System!!!!";
 
@@ -58,7 +59,7 @@ namespace EmployeeManagmentProject
 
                     case 4:
                         Console.WriteLine("Get Employee");
-                        service.search();
+                        service.get();
                         break;
 
                     case 5:

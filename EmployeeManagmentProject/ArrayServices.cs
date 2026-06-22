@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace EmployeeManagmentProject
 {
@@ -171,7 +172,7 @@ namespace EmployeeManagmentProject
             Console.WriteLine("Employee Not Found!");
         }
 
-        public void search()
+        public void get()
         {
             if (employeeCount == 0)
             {

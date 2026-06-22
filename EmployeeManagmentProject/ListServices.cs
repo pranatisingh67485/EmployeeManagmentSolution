@@ -134,7 +134,7 @@ namespace EmployeeManagmentProject
                 Console.WriteLine("--------------------------------");
             }
         }
-        public void search()
+        public void get()
         {
             Console.Write("Enter Employee ID to Search: ");
             int id = Convert.ToInt32(Console.ReadLine());
