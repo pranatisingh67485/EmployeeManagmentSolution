@@ -27,4 +27,4 @@ jobs:
 
       # Build Docker Image
       - name: Build Docker Image
-        run: docker build -t employee-management:latest -f EmployeeManagementProject/Dockerfile .
+        run: docker build -t employee-management:latest -f EmployeeManagmentProject/Dockerfile .
