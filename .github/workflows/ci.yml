@@ -1,6 +1,6 @@
 name: Build Employee Management Solution
 
-on:
+on: 
   push:
     branches:
       - main
