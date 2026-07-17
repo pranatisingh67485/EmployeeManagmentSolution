@@ -1,19 +1,19 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Build Stage
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 AS build
 
 WORKDIR /src
 
 COPY . .
 
-RUN dotnet restore
+RUN nuget restore EmployeeManagementSolution.sln
 
-RUN dotnet publish -c Release -o /app/publish
+RUN msbuild EmployeeManagementSolution.sln /p:Configuration=Release
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# Runtime Stage
+FROM mcr.microsoft.com/dotnet/framework/runtime:4.8
 
 WORKDIR /app
 
-COPY --from=build /app/publish .
+COPY --from=build /src/EmployeeManagmentProject/bin/Release/ .
 
-EXPOSE 8080
-
-ENTRYPOINT ["dotnet","EmployeeManagmentProject.dll"]
+ENTRYPOINT ["EmployeeManagmentProject.exe"]
