@@ -7,29 +7,20 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
 
       - name: Restore NuGet Packages
-        run: dotnet restore EmployeeManagementSolution.sln
+        run: nuget restore EmployeeManagementSolution.sln
 
       - name: Build Solution
-        run: dotnet build EmployeeManagementSolution.sln --configuration Release --no-restore
-
-      - name: Publish Project
-        run: dotnet publish EmployeeManagementProject/EmployeeManagementProject.csproj --configuration Release --output ./publish --no-build
-
-      - name: Upload Published Files
-        uses: actions/upload-artifact@v4
-        with:
-          name: EmployeeManagementAPI
-          path: ./publish
+        run: msbuild EmployeeManagementSolution.sln /p:Configuration=Release
